@@ -173,13 +173,3 @@ pytest -v
 ```
 
 **Требования для запуска юнит-тестов:** только Python и зависимости из `requirements.txt`. Ни PostgreSQL, ни RabbitMQ не нужны.
-
-### Настройка тестов
-
-Конфигурация pytest (`pytest.ini`):
-
-```ini
-[pytest]
-pythonpath = .
-asyncio_mode = auto
-```
