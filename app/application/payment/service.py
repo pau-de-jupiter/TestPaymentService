@@ -5,7 +5,6 @@ from app.domain.payment.exceptions import PaymentNotFound
 from app.application.payment.commands import (
     CommandCreatePayment,
     CommandCreateOutboxEvent,
-    CommandUpdatePaymentStatus,
 )
 from app.application.payment.queries import GetPaymentById
 
@@ -27,7 +26,9 @@ class PaymentService:
         2. Сохранить платеж со статусом pending.
         3. Записать событие в Outbox (гарантия доставки в RabbitMQ).
         '''
-        existing = await self._payment_repo.get_by_idempotency_key(data.idempotency_key)
+        existing = await self._payment_repo.get_by_idempotency_key(
+            data.idempotency_key
+        )
         if existing is not None:
             return existing
 
